@@ -138,6 +138,19 @@ func (deque *Deque[T]) PopFront() {
     }
 }
 
+func (deque Deque[T]) At(index int) Node[T] {
+    i := 0
+    var currentNode Node[T]
+    for node := range deque.TraverseForward() {
+        currentNode = *node
+        i++
+        if i == index {
+            break
+        }
+    }
+    return currentNode
+}
+
 func (deque Deque[T]) Len() int {
     count := 0
     for range deque.TraverseForward() {

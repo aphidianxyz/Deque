@@ -177,3 +177,22 @@ func TestInsertBeforeCurrentLastNode(t *testing.T) {
             as previous node, expected %v in both cases`, deque.first.next, deque.last.prev, &node2)
     }
 }
+
+func TestGetNodeAtIndex(t *testing.T) {
+    var deque Deque[int]
+    node1 := Node[int]{val:1}
+    node2 := Node[int]{val:2}
+    node3 := Node[int]{val:3}
+    node4 := Node[int]{val:4}
+    node5 := Node[int]{val:5}
+    deque.InsertLast(&node1)
+    deque.InsertLast(&node2)
+    deque.InsertLast(&node3)
+    deque.InsertLast(&node4)
+    deque.InsertLast(&node5)
+
+    want := deque.At(3)
+    if want != node3 {
+        t.Fatalf(`Expected %v, but got %v at index 3 of deque`, node3, want)
+    }
+}
